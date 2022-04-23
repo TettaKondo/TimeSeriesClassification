@@ -1,0 +1,155 @@
+\documentstyle[color,subfigure,graphicx,epsf,here,cite,otf,comment,nccmath,mediabb,fancyhdr,12pt]{jarticle}
+
+\graphicspath{{./pic/}}
+%%%\documentstyle{jarticle}
+\setlength{\textwidth}{16.2cm}%A4
+\setlength{\textheight}{23cm}%A4
+\setlength{\topmargin}{-1.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\parskip}{1pt}
+%\pagestyle{myheadings}
+\pagestyle{fancy}
+\lhead[名前]{近藤徹多}
+\rhead[\today]{\today}
+\title{課題2 医療画像認識}
+\author{近藤徹多}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+	\vspace*{20pt}
+
+	\begin{center}
+		{\LARGE \bf 基本課題}
+	\end{center}
+　　　　%\setcounter{section}{0}
+　　　　\addtocounter{section}{-1}
+	\section{level1}
+        時系列長が30で固定された1次元データの波形をDTWを用いて識別する.
+        具体的には2つ時系列データの時刻をt1, t2とすると,t1, t2全ての組の距離を計算し,
+        それらの合計が最小になるような距離(経路)を求める.
+        距離は誤差の二乗でを計算する.
+        また, testデータのクラスはreferenceデータとtestデータの距離が最小になるreferenceデータのクラスとして識別する.
+        識別結果を表\ref{tb:result1}に示す.
+
+        \begin{table}[]
+            \centering
+            \caption{時系列長30の1次元データの識別結果}
+            \begin{tabular}{|c|c|}
+                \hline
+                test data & class \\ \hline
+                test1     & 1     \\ \hline
+                test2     & 1     \\ \hline
+                test3     & 1     \\ \hline
+                test4     & 2     \\ \hline
+                test5     & 2     \\ \hline
+                test6     & 2     \\ \hline
+            \end{tabular}
+            \label{tb:result1}
+        \end{table}
+            
+
+
+	\section{level2}
+	    時系列長が30で固定された3次元データの波形をDTWを用いて識別する.
+        3次元データなので, 距離はベクトルとして誤差の二乗を計算する.
+        識別結果を表\ref{tb:result2}に示す.
+
+        \begin{table}[]
+            \centering
+            \caption{時系列長30の3次元データの識別結果}
+            \begin{tabular}{|c|c|}
+                \hline
+                test data & class \\ \hline
+                test1     & 1     \\ \hline
+                test2     & 2     \\ \hline
+                test3     & 1     \\ \hline
+                test4     & 2     \\ \hline
+                test5     & 2     \\ \hline
+                test6     & 1     \\ \hline
+            \end{tabular}
+            \label{tb:result2}
+        \end{table}
+	
+	\section{level3}
+	    level2のデータをランダムに間引きしたり延長した3次元データの波形をDTWを用いて識別する.
+        DTWは長さの異なる時系列データにも対応できるので, level2と同様に計算できる.
+        識別結果を表\ref{tb:result3}に示す.
+
+
+        \begin{table}[]
+            \centering
+            \caption{ランダムな時系列長の3次元データの識別結果}
+            \begin{tabular}{|c|c|}
+                \hline
+                test data & class \\ \hline
+                test1     & 1     \\ \hline
+                test2     & 2     \\ \hline
+                test3     & 2     \\ \hline
+                test4     & 1     \\ \hline
+                test5     & 1     \\ \hline
+                test6     & 1     \\ \hline
+            \end{tabular}
+            \label{tb:result3}
+        \end{table}
+		
+	\section{level4}
+	    時系列長が256で固定された64次元データの波形をDTWを用いて識別する.
+        今回もベクトルとして距離計算を行う.
+        また, referenceデータが各クラス3つある.
+        初めに, referenceデータを各クラス1つずつ用いて識別し,
+        次にreferenceデータを全て用いて, 平均距離を比較して識別を行う.
+        referenceデータを各クラス1つずつ用いた識別結果を表\ref{tb:result4-1},
+        referenceデータを全て用いた識別結果を表\ref{tb:result4-2}に示す.
+
+        \begin{table}[]
+            \centering
+            \caption{時系列長256の64次元データの識別結果(referenceデータ1つずつ)}
+            \begin{tabular}{|c|c|}
+                \hline
+                test data & class \\ \hline
+                test1      & 2     \\ \hline
+                test2      & 2     \\ \hline
+                test3      & 2     \\ \hline
+                test4      & 1     \\ \hline
+                test5      & 1     \\ \hline
+                test6      & 1     \\ \hline
+                test7      & 2     \\ \hline
+                test8      & 2     \\ \hline
+                test9      & 2     \\ \hline
+                test10     & 2     \\ \hline
+                test11     & 2     \\ \hline
+                test12     & 2     \\ \hline
+                test13     & 1     \\ \hline
+                test14     & 2     \\ \hline
+            \end{tabular}
+            \label{tb:result4-1}
+        \end{table}
+
+        \begin{table}[]
+            \centering
+            \caption{時系列長256の64次元データの識別結果(referenceデータ全て)}
+            \begin{tabular}{|c|c|}
+                \hline
+                test data & class \\ \hline
+                test1      & 1     \\ \hline
+                test2      & 1     \\ \hline
+                test3      & 1     \\ \hline
+                test4      & 1     \\ \hline
+                test5      & 1     \\ \hline
+                test6      & 1     \\ \hline
+                test7      & 1     \\ \hline
+                test8      & 2     \\ \hline
+                test9      & 2     \\ \hline
+                test10     & 2     \\ \hline
+                test11     & 2     \\ \hline
+                test12     & 2     \\ \hline
+                test13     & 1     \\ \hline
+                test14     & 2     \\ \hline
+            \end{tabular}
+            \label{tb:result4-2}
+        \end{table}
+
+\end{document}
